@@ -3,6 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Le site gère lui-même son mode nuit : les navigateurs ne doivent pas le recolorer -->
+<meta name="color-scheme" content="light dark">
 <title>Intuition Tango</title>
 <meta name="description" content="Intuition Tango, école de tango argentin à Gerzat, près de Clermont-Ferrand : cours hebdomadaires, initiations et pratiques.">
 <link rel="icon" type="image/png" href="images/favicon.png">
@@ -255,6 +257,26 @@
   footer details summary { cursor: pointer; color: var(--bronze); margin-top: 1rem; }
   footer details p { margin: .5rem 0 0; max-width: 40rem; }
 
+
+  /* ---------- Mode nuit ---------- */
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --pierre: #1C1B1E;      /* fond des rubriques */
+      --encre: #ECE7E0;       /* texte principal */
+      --gris: #ADA5A3;        /* texte secondaire */
+      --cramoisi: #E6BF6C;    /* titres : or brillant au lieu du carmin */
+      --bronze-fonce: #C9A15A;
+      --framboise: #E07A92;   /* framboise éclaircie pour rester lisible */
+    }
+    h2 {
+      background: linear-gradient(100deg, #F6DE9C 0%, #E2B95F 45%, #C9A15A 70%, #F1D388 100%);
+      -webkit-background-clip: text; background-clip: text; color: transparent;
+    }
+    .asso blockquote, .agenda h3 { color: #F2EEE8; }
+    section.bloc + section.bloc { border-top-color: rgba(201, 161, 90, .25); }
+    .galerie figure, .portrait { background: #2A292C; }
+  }
+
   /* ---------- Mobile ---------- */
   @media (max-width: 720px) {
     .entete .contenu { flex-direction: column; align-items: flex-start; gap: .25rem; padding-block: .6rem; }
@@ -325,8 +347,7 @@
       <div>
         <h2>L'association</h2>
         <p>Le tango argentin naît d'une étreinte. Deux corps qui s'écoutent, une conversation sans paroles, une marche partagée que la musique emporte. Venue des rives du Río de la Plata, cette danse se transmet chez Intuition Tango comme on confie un secret : de pas en pas, d'abrazo en abrazo.</p>
-        <p>Jacques et Coralie transmettent un tango moderne, fluide et connecté, qui se danse aussi bien sur les tangos de l'âge d'or que sur les musiques d'aujourd'hui. 
-          Alexander Carles, technicien du geste, travaille avec les danseurs intermédiaires et avancés la justesse de chaque figure, les enchaînements complexes, et cette liberté d'où naît la créativité.</p>
+        <p>Jacques et Coralie transmettent un tango moderne, fluide et connecté, qui se danse aussi bien sur les tangos de l'âge d'or que sur les musiques d'aujourd'hui.<br>Alexander Carles, technicien du geste, travaille avec les danseurs intermédiaires et avancés la justesse de chaque figure, les enchaînements complexes, et cette liberté d'où naît la créativité.</p>
         <p>Nul besoin d'expérience, et il n'est jamais trop tard pour commencer. Venez seul ou accompagné : au tango, on ne reste jamais longtemps sans partenaire.</p>
       </div>
     </div>
