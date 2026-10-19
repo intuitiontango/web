@@ -1,0 +1,536 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Intuition Tango</title>
+<meta name="description" content="Intuition Tango, école de tango argentin à Gerzat, près de Clermont-Ferrand : cours hebdomadaires, initiations et pratiques.">
+<link rel="icon" type="image/png" href="images/favicon.png">
+<link rel="apple-touch-icon" href="images/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    /* Couleurs reprises de la bannière et du logo */
+    --noir: #000000;        /* fond du logo : en-tête et pied de page */
+    --anthracite: #3A3A3D;  /* fond de la bannière : accueil */
+    --bronze: #C9A15A;      /* lettres INTUITION, cadre, filets */
+    --bronze-fonce: #8F6F35;/* bronze lisible sur fond clair */
+    --cramoisi: #8E1A35;    /* lettres TANGO : titres */
+    --framboise: #C0405F;   /* danseuse du logo : petits accents */
+    --pierre: #EFEEEC;      /* fond des rubriques */
+    --encre: #2A2A2D;       /* texte principal */
+    --gris: #615F63;        /* texte secondaire */
+    --titre: "Marcellus", "Trajan Pro", Georgia, serif;
+    --texte: "Jost", "Futura", "Century Gothic", system-ui, sans-serif;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: 4.5rem; }
+  body {
+    margin: 0;
+    background: var(--pierre);
+    color: var(--encre);
+    font-family: var(--texte);
+    font-weight: 300;
+    font-size: 1.0625rem;
+    line-height: 1.65;
+  }
+  img { max-width: 100%; display: block; }
+  a { color: inherit; }
+  :focus-visible { outline: 2px solid var(--bronze); outline-offset: 3px; }
+
+  .contenu { width: min(68rem, 100% - 2rem); margin-inline: auto; }
+
+  /* ---------- En-tête ---------- */
+  .entete {
+    position: sticky; top: 0; z-index: 10;
+    background: var(--noir);
+    border-bottom: 1px solid rgba(201, 161, 90, .4);
+  }
+  .entete .contenu {
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 1rem; min-height: 4rem;
+  }
+  .marque {
+    display: flex; align-items: center; gap: .7rem;
+    font-family: var(--titre); font-size: 1.25rem; color: var(--bronze);
+    text-decoration: none; white-space: nowrap;
+  }
+  .marque img { width: 2.6rem; height: 2.6rem; }
+  .entete nav ul {
+    display: flex; flex-wrap: wrap; gap: .25rem 1.5rem; list-style: none; margin: 0; padding: 0;
+  }
+  .entete nav a {
+    color: #E6E1D8; text-decoration: none; font-size: .95rem;
+    letter-spacing: .02em; white-space: nowrap;
+    padding-block: .25rem; border-bottom: 1px solid transparent;
+  }
+  .entete nav a:hover { border-bottom-color: var(--bronze); color: var(--bronze); }
+
+  /* ---------- Accueil ---------- */
+  .hero {
+    background: var(--anthracite);
+    padding-block: clamp(2rem, 5vw, 4rem) clamp(3rem, 7vw, 5rem);
+    color: #E6E1D8;
+  }
+  .banniere {
+    width: 100%; height: auto;
+    box-shadow: 0 1.5rem 3rem rgba(0, 0, 0, .35);
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .banniere { animation: apparition 1.6s ease-out both; }
+  }
+  @keyframes apparition { from { opacity: 0; transform: scale(.985); } }
+  @keyframes fondu { from { opacity: 0; } }
+
+  .banniere-cadre { position: relative; }
+  .hero .devise {
+    position: absolute; left: 50%; top: 70%; transform: translateX(-50%);
+    width: 58%; margin: 0; text-align: center;
+    font-family: var(--titre); font-size: clamp(1rem, 2.4vw, 1.9rem); line-height: 1.3; letter-spacing: .02em;
+    color: #EBD5A8; text-shadow: 0 1px 2px rgba(0, 0, 0, .7);
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .devise { animation: fondu 1.6s .8s ease-out both; }
+  }
+  @media (max-width: 720px) {
+    .hero .devise { position: static; transform: none; width: auto; margin-top: 1.25rem; font-size: 1.1rem; }
+  }
+  .hero-texte {
+    display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
+    gap: 1.5rem 3rem; margin-top: clamp(2rem, 5vw, 3.5rem);
+  }
+  .hero p { margin: 0; max-width: 36rem; font-size: clamp(1.1rem, 2.2vw, 1.3rem); }
+  .actions { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem; }
+  .actions .reseaux { margin: 0; }
+  .bouton {
+    display: inline-block; padding: .85rem 1.6rem;
+    font-family: var(--texte); font-weight: 400; font-size: 1rem;
+    text-decoration: none; border: 1px solid var(--bronze);
+    transition: background-color .2s, color .2s;
+  }
+  .bouton-plein { background: var(--bronze); color: var(--noir); }
+  .bouton-plein:hover { background: #E2C38A; border-color: #E2C38A; }
+  .bouton-ligne { color: var(--bronze); }
+  .bouton-ligne:hover { background: rgba(201, 161, 90, .12); }
+
+  /* ---------- Rubriques ---------- */
+  section.bloc { padding-block: clamp(4rem, 9vw, 7rem); }
+  section.bloc + section.bloc { border-top: 1px solid rgba(143, 111, 53, .25); }
+  h2 {
+    font-family: var(--titre); font-weight: 400;
+    font-size: clamp(2.2rem, 5vw, 3.3rem); line-height: 1.1;
+    margin: 0 0 1rem; color: var(--cramoisi);
+  }
+  h3 { font-family: var(--titre); font-weight: 400; }
+  .intro { max-width: 38rem; color: var(--gris); margin: 0 0 3rem; }
+
+  /* L'association */
+  .asso {
+    display: grid; gap: 2rem 4rem;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr));
+    align-items: start;
+  }
+  .asso blockquote {
+    margin: 0; font-family: var(--titre);
+    font-size: clamp(1.5rem, 3vw, 2rem); line-height: 1.4; color: var(--anthracite);
+    border-left: 2px solid var(--bronze); padding-left: 1.5rem;
+  }
+  .asso p { margin: 0 0 1rem; max-width: 36rem; }
+
+  /* Cours */
+  .cours { list-style: none; margin: 0; padding: 0; }
+  .cours li {
+    display: grid; gap: .25rem 2rem; align-items: baseline;
+    grid-template-columns: 9rem 10rem 1fr;
+    padding-block: 1.4rem; border-bottom: 1px solid rgba(143, 111, 53, .3);
+  }
+  .cours li:first-child { border-top: 1px solid rgba(143, 111, 53, .3); }
+  .jour { font-family: var(--titre); font-size: 1.6rem; color: var(--cramoisi); }
+  .heure { font-weight: 400; font-variant-numeric: tabular-nums; }
+  .niveau { font-weight: 400; }
+  .lieu { color: var(--gris); font-size: .95rem; }
+  .tarifs { margin-top: 2rem; color: var(--gris); }
+
+  /* Agenda */
+  .agenda { list-style: none; margin: 0; padding: 0; }
+  .agenda li {
+    display: grid; grid-template-columns: 6.5rem 1fr; gap: 1.5rem;
+    padding-block: 1.6rem; border-bottom: 1px solid rgba(143, 111, 53, .3);
+  }
+  .agenda li:first-child { border-top: 1px solid rgba(143, 111, 53, .3); }
+  .date { text-align: center; color: var(--cramoisi); line-height: 1; }
+  .date b { display: block; font-family: var(--titre); font-weight: 400; font-size: 3rem; }
+  .date small { font-size: .9rem; color: var(--bronze-fonce); }
+  .agenda h3 { font-size: 1.5rem; margin: 0 0 .25rem; color: var(--anthracite); }
+  .agenda p { margin: 0; color: var(--gris); }
+  .type { color: var(--framboise); font-weight: 500; }
+  .date small:first-child { display: block; margin-bottom: .3rem; }
+  .agenda li.passe { opacity: .45; }
+  .agenda li.passe .type { color: var(--gris); }
+  .etat { margin-left: .5rem; font-family: var(--texte); font-size: .8rem; color: var(--gris); border: 1px solid currentColor; padding: .05rem .4rem; vertical-align: middle; }
+
+  /* Professeurs */
+  .profs {
+    display: grid; gap: 3rem;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr));
+    max-width: 52rem;
+  }
+  .portrait {
+    aspect-ratio: 4 / 5; background: var(--anthracite); margin-bottom: 1.25rem;
+    display: grid; place-items: center; overflow: hidden;
+    border: 1px solid var(--bronze);
+    color: var(--bronze); font-family: var(--titre); font-size: 3.5rem;
+  }
+  .portrait img { width: 100%; height: 100%; object-fit: cover; }
+  .profs h3 { font-size: 1.7rem; margin: 0 0 .5rem; color: var(--cramoisi); }
+  .profs p { margin: 0; }
+
+  /* Galerie */
+  .galerie {
+    display: grid; gap: .75rem;
+    grid-template-columns: 1.65fr 1fr;
+  }
+  .galerie figure { margin: 0; overflow: hidden; background: var(--anthracite); }
+  .galerie figure:first-child { aspect-ratio: 1413 / 1113; }
+  .galerie img { width: 100%; height: 100%; object-fit: cover; }
+  .galerie .cadre-bas { position: relative; }
+  .galerie .cadre-bas img { position: absolute; inset: 0; object-position: 50% 100%; }
+
+  /* Vidéo */
+  .video {
+    position: relative; display: grid; align-items: end; justify-items: start;
+    aspect-ratio: 16 / 9; margin-bottom: .75rem; overflow: hidden;
+    background: var(--anthracite); border: 1px solid var(--bronze);
+    text-decoration: none;
+  }
+  .video img {
+    position: absolute; inset: 0; width: 100%; height: 100%;
+    object-fit: cover; object-position: 50% 35%;
+    filter: brightness(.75); transition: filter .3s, transform .6s;
+  }
+  .video:hover img, .video:focus-visible img { filter: brightness(.9); transform: scale(1.02); }
+  .video::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,.75), transparent 55%); }
+  .video-attente {
+    position: relative; z-index: 1; display: flex; align-items: center; gap: 1rem;
+    padding: clamp(1rem, 3vw, 2rem); color: #F2EEE8;
+  }
+  .lecture {
+    display: grid; place-items: center;
+    width: 3.5rem; height: 3.5rem; border-radius: 50%; padding-left: .25rem; flex: none;
+    border: 1px solid var(--bronze); background: rgba(0, 0, 0, .35);
+    color: var(--bronze); font-size: 1.3rem;
+  }
+  .video-titre { font-family: var(--titre); font-size: clamp(1.1rem, 2.5vw, 1.4rem); }
+
+  @media (max-width: 720px) {
+    .galerie { grid-template-columns: 1fr; }
+    .galerie .cadre-bas { aspect-ratio: 4 / 5; }
+  }
+
+  /* Contact */
+  .contact {
+    display: grid; gap: 2rem 4rem;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr));
+  }
+  .contact h3 { font-size: 1.3rem; margin: 0 0 .5rem; color: var(--cramoisi); }
+  .contact p { margin: 0; }
+  .contact a { text-decoration-color: var(--bronze); text-underline-offset: 3px; }
+
+  /* ---------- Pied de page ---------- */
+  footer { background: var(--noir); color: #CFC9BF; padding-block: 3rem; font-size: .9rem; }
+  footer .contenu { display: grid; grid-template-columns: auto 1fr; gap: 1.5rem 2.5rem; align-items: start; }
+  footer .logo { width: 7rem; height: 7rem; }
+  footer .nom { font-family: var(--titre); font-size: 1.6rem; color: var(--bronze); margin: 0 0 .5rem; }
+  footer p { margin: 0 0 .5rem; }
+  .reseaux { display: flex; gap: .9rem; list-style: none; margin: 1rem 0 0; padding: 0; }
+  .reseaux a {
+    display: grid; place-items: center; width: 2.75rem; height: 2.75rem; border-radius: 50%;
+    border: 1px solid var(--bronze); color: var(--bronze); transition: background-color .2s, color .2s;
+  }
+  .reseaux a:hover, .reseaux a:focus-visible { background: var(--bronze); color: var(--noir); }
+  .reseaux svg { width: 1.2rem; height: 1.2rem; fill: currentColor; }
+  footer details summary { cursor: pointer; color: var(--bronze); margin-top: 1rem; }
+  footer details p { margin: .5rem 0 0; max-width: 40rem; }
+
+  /* ---------- Mobile ---------- */
+  @media (max-width: 720px) {
+    .entete .contenu { flex-direction: column; align-items: flex-start; gap: .25rem; padding-block: .6rem; }
+    .entete nav ul { gap: 1.1rem; max-width: 100%; }
+    html { scroll-padding-top: 7rem; }
+    .cours li { grid-template-columns: 1fr; }
+    .agenda li { grid-template-columns: 4.5rem 1fr; gap: 1rem; }
+    .date b { font-size: 2.4rem; }
+    footer .contenu { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<header class="entete">
+  <div class="contenu">
+    <a class="marque" href="#">
+      <img src="images/logo.png" alt="" width="42" height="42">
+      Intuition Tango
+    </a>
+    <nav aria-label="Navigation principale">
+      <ul>
+        <li><a href="#cours">Cours</a></li>
+        <li><a href="#agenda">Agenda</a></li>
+        <li><a href="#professeurs">Professeurs</a></li>
+        <li><a href="#photos">En images</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <!-- ===================== ACCUEIL ===================== -->
+  <section class="hero">
+    <div class="contenu">
+      <div class="banniere-cadre">
+      <h1 style="margin:0">
+        <img class="banniere"
+             src="images/banniere-1600.jpg"
+             srcset="images/banniere-900.jpg 900w, images/banniere-1600.jpg 1600w"
+             sizes="(max-width: 1100px) 100vw, 68rem"
+             width="1600" height="609"
+             alt="Intuition Tango">
+      </h1>
+      <!-- Phrase affichée sur la bannière : modifiable ici -->
+      <p class="devise">Trouver sa liberté dans la danse</p>
+      </div>
+      <div class="hero-texte">
+        <p>École de tango argentin à Gerzat, aux portes de Clermont-Ferrand. Cours chaque semaine et pratiques, pour danser dès le premier&nbsp;pas.</p>
+        <div class="actions">
+          <a class="bouton bouton-plein" href="#cours">Voir les cours</a>
+          <a class="bouton bouton-ligne" href="#contact">Nous écrire</a>
+          <ul class="reseaux">
+            <li><a href="https://www.facebook.com/intuitiontango" rel="noopener" aria-label="Intuition Tango sur Facebook"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9.101 23.691v-7.98H6.627v-3.667h2.474v-1.58c0-4.085 1.848-5.978 5.858-5.978.401 0 .955.042 1.468.103a8.68 8.68 0 0 1 1.141.195v3.325a8.623 8.623 0 0 0-.653-.036 26.805 26.805 0 0 0-.733-.009c-.707 0-1.259.096-1.675.309a1.686 1.686 0 0 0-.679.622c-.258.42-.374.995-.374 1.752v1.297h3.919l-.386 2.103-.287 1.564h-3.246v8.245C19.396 23.238 24 18.179 24 12.044c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.628 3.874 10.35 9.101 11.647Z"/></svg></a></li>
+            <li><a href="https://www.instagram.com/intuition_tango/" rel="noopener" aria-label="Intuition Tango sur Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7.0301.084c-1.2768.0602-2.1487.264-2.911.5634-.7888.3075-1.4575.72-2.1228 1.3877-.6652.6677-1.075 1.3368-1.3802 2.127-.2954.7638-.4956 1.6365-.552 2.914-.0564 1.2775-.0689 1.6882-.0626 4.947.0062 3.2586.0206 3.6671.0825 4.9473.061 1.2765.264 2.1482.5635 2.9107.308.7889.72 1.4573 1.388 2.1228.6679.6655 1.3365 1.0743 2.1285 1.38.7632.295 1.6361.4961 2.9134.552 1.2773.056 1.6884.069 4.9462.0627 3.2578-.0062 3.668-.0207 4.9478-.0814 1.28-.0607 2.147-.2652 2.9098-.5633.7889-.3086 1.4578-.72 2.1228-1.3881.665-.6682 1.0745-1.3378 1.3795-2.1284.2957-.7632.4966-1.636.552-2.9124.056-1.2809.0692-1.6898.063-4.948-.0063-3.2583-.021-3.6668-.0817-4.9465-.0607-1.2797-.264-2.1487-.5633-2.9117-.3084-.7889-.72-1.4568-1.3876-2.1228C21.2982 1.33 20.628.9208 19.8378.6165 19.074.321 18.2017.1197 16.9244.0645 15.6471.0093 15.236-.005 11.977.0014 8.718.0076 8.31.0215 7.0301.0839m.1402 21.6932c-1.17-.0509-1.8053-.2453-2.2287-.408-.5606-.216-.96-.4771-1.3819-.895-.422-.4178-.6811-.8186-.9-1.378-.1644-.4234-.3624-1.058-.4171-2.228-.0595-1.2645-.072-1.6442-.079-4.848-.007-3.2037.0053-3.583.0607-4.848.05-1.169.2456-1.805.408-2.2282.216-.5613.4762-.96.895-1.3816.4188-.4217.8184-.6814 1.3783-.9003.423-.1651 1.0575-.3614 2.227-.4171 1.2655-.06 1.6447-.072 4.848-.079 3.2033-.007 3.5835.005 4.8495.0608 1.169.0508 1.8053.2445 2.228.408.5608.216.96.4754 1.3816.895.4217.4194.6816.8176.9005 1.3787.1653.4217.3617 1.056.4169 2.2263.0602 1.2655.0739 1.645.0796 4.848.0058 3.203-.0055 3.5834-.061 4.848-.051 1.17-.245 1.8055-.408 2.2294-.216.5604-.4763.96-.8954 1.3814-.419.4215-.8181.6811-1.3783.9-.4224.1649-1.0577.3617-2.2262.4174-1.2656.0595-1.6448.072-4.8493.079-3.2045.007-3.5825-.006-4.848-.0608M16.953 5.5864A1.44 1.44 0 1 0 18.39 4.144a1.44 1.44 0 0 0-1.437 1.4424M5.8385 12.012c.0067 3.4032 2.7706 6.1557 6.173 6.1493 3.4026-.0065 6.157-2.7701 6.1506-6.1733-.0065-3.4032-2.771-6.1565-6.174-6.1498-3.403.0067-6.156 2.771-6.1496 6.1738M8 12.0077a4 4 0 1 1 4.008 3.9921A3.9996 3.9996 0 0 1 8 12.0077"/></svg></a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== L'ASSOCIATION ===================== -->
+  <section class="bloc">
+    <div class="contenu asso">
+      <blockquote>D'abord un silence, un souffle. Puis la musique s'élève… et le monde tient dans une étreinte.</blockquote>
+      <div>
+        <h2>L'association</h2>
+        <p>Le tango argentin naît d'une étreinte. Deux corps qui s'écoutent, une conversation sans paroles, une marche partagée que la musique emporte. Venue des rives du Río de la Plata, cette danse se transmet chez Intuition Tango comme on confie un secret : de pas en pas, d'abrazo en abrazo.</p>
+        <p>Jacques et Coralie transmettent un tango moderne, fluide et connecté, qui se danse aussi bien sur les tangos de l'âge d'or que sur les musiques d'aujourd'hui. Alexander Carles, technicien du geste, mène ensuite les danseurs plus loin : la justesse de chaque figure, les enchaînements complexes, et cette liberté d'où naît la créativité.</p>
+        <p>Nul besoin d'expérience, et il n'est jamais trop tard pour commencer. Venez seul ou accompagné : au tango, on ne reste jamais longtemps sans partenaire.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== COURS ===================== -->
+  <section class="bloc" id="cours">
+    <div class="contenu">
+      <h2>Cours et horaires</h2>
+      <p class="intro">La saison 2026-2027 a commencé le 6 octobre : il est encore temps de nous rejoindre. Les cours sont maintenus pendant les vacances d'octobre.</p>
+
+      <!-- Une ligne <li> par cours. Copie-colle un bloc pour en ajouter un. -->
+      <ul class="cours">
+        <li>
+          <span class="jour">Mardi</span>
+          <span class="heure">19h15 – 20h30</span>
+          <span><span class="niveau">Débutants, avec Jacques et Coralie</span><br><span class="lieu">L'Atelier, 5 rue du Moulin, 63360 Gerzat</span></span>
+        </li>
+        <li>
+          <span class="jour">Mardi</span>
+          <span class="heure">20h45 – 22h00</span>
+          <span><span class="niveau">Intermédiaires-avancés, avec Alexander Carles</span><br><span class="lieu">L'Atelier, 5 rue du Moulin, 63360 Gerzat</span></span>
+        </li>
+      </ul>
+
+      <p class="tarifs">Formules annuelles dès 125 €. Tarifs réduits pour les étudiants et les demandeurs d'emploi, et cartes de 10 cours.</p>
+    </div>
+  </section>
+
+  <!-- ===================== AGENDA ===================== -->
+  <section class="bloc" id="agenda">
+    <div class="contenu">
+      <h2>Agenda</h2>
+      <p class="intro">Nos rendez-vous et ceux de nos amis de la région. Les dates passées restent affichées en grisé.</p>
+
+      <!-- À MODIFIER : un bloc <li> par événement, dans l'ordre chronologique.
+           data-date (AAAA-MM-JJ) sert à griser automatiquement les dates passées. -->
+      <ul class="agenda">
+        <li data-date="2026-10-06">
+          <div class="date"><small>mar.</small><b>6</b><small>oct.</small></div>
+          <div>
+            <h3>Intuition Tango, Gerzat</h3>
+            <p><span class="type">Initiation</span>, 19h00 à 20h30, L'Atelier.</p>
+          </div>
+        </li>
+        <li data-date="2026-10-10">
+          <div class="date"><small>sam.</small><b>10</b><small>oct.</small></div>
+          <div>
+            <h3>Chez Fabie, Vichy</h3>
+            <p><span class="type">Stages</span>, 16h30 et 18h00.</p>
+          </div>
+        </li>
+        <li data-date="2026-10-10">
+          <div class="date"><small>sam.</small><b>10</b><small>oct.</small></div>
+          <div>
+            <h3>TangoLoft, Vichy</h3>
+            <p><span class="type">Milonga</span>, neo, nuevo et tradi.</p>
+          </div>
+        </li>
+        <li data-date="2026-10-13">
+          <div class="date"><small>mar.</small><b>13</b><small>oct.</small></div>
+          <div>
+            <h3>Intuition Tango, Gerzat</h3>
+            <p><span class="type">Cours débutants</span>, 19h15 à 20h30, L'Atelier.</p>
+          </div>
+        </li>
+        <li data-date="2026-10-15">
+          <div class="date"><small>jeu.</small><b>15</b><small>oct.</small></div>
+          <div>
+            <h3>NFS Academy, Aubière</h3>
+            <p><span class="type">Initiation</span>, 21h30 à 22h30.</p>
+          </div>
+        </li>
+        <li data-date="2026-10-20">
+          <div class="date"><small>mar.</small><b>20</b><small>oct.</small></div>
+          <div>
+            <h3>Intuition Tango, Gerzat</h3>
+            <p><span class="type">Cours débutants</span>, 19h15 à 20h30, L'Atelier.</p>
+          </div>
+        </li>
+        <li data-date="2026-10-27">
+          <div class="date"><small>mar.</small><b>27</b><small>oct.</small></div>
+          <div>
+            <h3>Intuition Tango, Gerzat</h3>
+            <p><span class="type">Cours débutants</span>, 19h15 à 20h30, L'Atelier.</p>
+          </div>
+        </li>
+      </ul>
+      <p class="tarifs">Suivez toutes nos annonces sur <a href="https://www.facebook.com/intuitiontango" rel="noopener">Facebook</a> et <a href="https://www.instagram.com/intuition_tango/" rel="noopener">Instagram</a>.</p>
+    </div>
+  </section>
+
+  <!-- ===================== PROFESSEURS ===================== -->
+  <section class="bloc" id="professeurs">
+    <div class="contenu">
+      <h2>Professeurs</h2>
+      <p class="intro">Une équipe qui transmet le tango pas à pas et en douceur : la marche, l'abrazo et la connexion avec son partenaire.</p>
+
+      <div class="profs">
+        <!-- À MODIFIER : pour mettre une photo, remplace les initiales par
+             <img src="images/prof1.jpg" alt="Prénom Nom"> après avoir déposé la photo dans le dossier images/ -->
+        <article>
+          <div class="portrait"><img src="images/jacques-coralie.jpg" alt="Coralie et Jacques dansant le tango en abrazo" width="800" height="1000" loading="lazy"></div>
+          <h3>Coralie et Jacques</h3>
+          <p>Professeurs des cours débutants, ils transmettent un tango moderne, fluide et connecté, qu'ils dansent aussi bien sur des tangos traditionnels que sur des musiques contemporaines. Leur pédagogie fait vivre les deux rôles, guider et suivre : comprendre l'autre est la plus sûre façon d'apprendre.</p>
+        </article>
+        <article>
+          <div class="portrait"><img src="images/alexander-carles.jpg" alt="Portrait d'Alexander Carles" width="800" height="1000" loading="lazy"></div>
+          <h3>Alexander Carles</h3>
+          <p>Professeur des cours intermédiaires-avancés. Technicien, il aide les danseurs à soigner la qualité d'exécution de chaque figure, à aborder les figures complexes et à développer leur propre créativité.</p>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== PHOTOS ===================== -->
+  <section class="bloc" id="photos">
+    <div class="contenu">
+      <h2>En images</h2>
+      <p class="intro">Quelques instants de nos cours du mardi, à L'Atelier.</p>
+
+      <!-- Vidéo : vignette qui ouvre le reel sur Instagram (aucun cookie déposé sur le site).
+           Pour changer de vidéo, remplace l'adresse href ; pour changer l'image, remplace src. -->
+      <a class="video" href="https://www.instagram.com/reel/Delpj1Uoh5X/" target="_blank" rel="noopener">
+        <img src="images/jacques-coralie.jpg" alt="" loading="lazy">
+        <span class="video-attente">
+          <span class="lecture" aria-hidden="true">&#9654;</span>
+          <span class="video-titre">Voir la vidéo sur Instagram</span>
+        </span>
+      </a>
+
+      <div class="galerie">
+        <figure>
+          <img src="images/cours-salle.jpg" alt="Couples dansant en abrazo pendant un cours à L'Atelier" width="1413" height="1113" loading="lazy">
+        </figure>
+        <figure class="cadre-bas">
+          <img src="images/cours-cercle.jpg" alt="Élèves réunis autour du professeur pendant un cours débutants" width="900" height="1538" loading="lazy">
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== CONTACT ===================== -->
+  <section class="bloc" id="contact">
+    <div class="contenu">
+      <h2>Contact</h2>
+      <p class="intro">Une question, envie d'essayer un cours ? Écrivez-nous.</p>
+
+      <!-- À MODIFIER : coordonnées -->
+      <div class="contact">
+        <div>
+          <h3>Par mail</h3>
+          <p><a href="mailto:tangointuition@gmail.com">tangointuition@gmail.com</a></p>
+        </div>
+        <div>
+          <h3>Sur place</h3>
+          <p>L'Atelier<br>5 rue du Moulin, 63360 Gerzat<br><a href="https://www.openstreetmap.org/search?query=5%20rue%20du%20Moulin%2063360%20Gerzat" rel="noopener">Voir sur la carte</a></p>
+        </div>
+        <div>
+          <h3>Sur les réseaux</h3>
+          <p><a href="https://www.facebook.com/intuitiontango" rel="noopener">Facebook : facebook.com/intuitiontango</a><br><a href="https://www.instagram.com/intuition_tango/" rel="noopener">Instagram : intuition_tango</a></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="contenu">
+    <img class="logo" src="images/logo.png" alt="Logo Intuition Tango" width="112" height="112">
+    <div>
+      <p class="nom">Intuition Tango</p>
+      <p>Association loi 1901. © 2026 Intuition Tango.</p>
+      <!-- Réseaux sociaux (icônes : Simple Icons, licence CC0) -->
+      <ul class="reseaux">
+        <li><a href="https://www.facebook.com/intuitiontango" rel="noopener" aria-label="Intuition Tango sur Facebook"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9.101 23.691v-7.98H6.627v-3.667h2.474v-1.58c0-4.085 1.848-5.978 5.858-5.978.401 0 .955.042 1.468.103a8.68 8.68 0 0 1 1.141.195v3.325a8.623 8.623 0 0 0-.653-.036 26.805 26.805 0 0 0-.733-.009c-.707 0-1.259.096-1.675.309a1.686 1.686 0 0 0-.679.622c-.258.42-.374.995-.374 1.752v1.297h3.919l-.386 2.103-.287 1.564h-3.246v8.245C19.396 23.238 24 18.179 24 12.044c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.628 3.874 10.35 9.101 11.647Z"/></svg></a></li>
+        <li><a href="https://www.instagram.com/intuition_tango/" rel="noopener" aria-label="Intuition Tango sur Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7.0301.084c-1.2768.0602-2.1487.264-2.911.5634-.7888.3075-1.4575.72-2.1228 1.3877-.6652.6677-1.075 1.3368-1.3802 2.127-.2954.7638-.4956 1.6365-.552 2.914-.0564 1.2775-.0689 1.6882-.0626 4.947.0062 3.2586.0206 3.6671.0825 4.9473.061 1.2765.264 2.1482.5635 2.9107.308.7889.72 1.4573 1.388 2.1228.6679.6655 1.3365 1.0743 2.1285 1.38.7632.295 1.6361.4961 2.9134.552 1.2773.056 1.6884.069 4.9462.0627 3.2578-.0062 3.668-.0207 4.9478-.0814 1.28-.0607 2.147-.2652 2.9098-.5633.7889-.3086 1.4578-.72 2.1228-1.3881.665-.6682 1.0745-1.3378 1.3795-2.1284.2957-.7632.4966-1.636.552-2.9124.056-1.2809.0692-1.6898.063-4.948-.0063-3.2583-.021-3.6668-.0817-4.9465-.0607-1.2797-.264-2.1487-.5633-2.9117-.3084-.7889-.72-1.4568-1.3876-2.1228C21.2982 1.33 20.628.9208 19.8378.6165 19.074.321 18.2017.1197 16.9244.0645 15.6471.0093 15.236-.005 11.977.0014 8.718.0076 8.31.0215 7.0301.0839m.1402 21.6932c-1.17-.0509-1.8053-.2453-2.2287-.408-.5606-.216-.96-.4771-1.3819-.895-.422-.4178-.6811-.8186-.9-1.378-.1644-.4234-.3624-1.058-.4171-2.228-.0595-1.2645-.072-1.6442-.079-4.848-.007-3.2037.0053-3.583.0607-4.848.05-1.169.2456-1.805.408-2.2282.216-.5613.4762-.96.895-1.3816.4188-.4217.8184-.6814 1.3783-.9003.423-.1651 1.0575-.3614 2.227-.4171 1.2655-.06 1.6447-.072 4.848-.079 3.2033-.007 3.5835.005 4.8495.0608 1.169.0508 1.8053.2445 2.228.408.5608.216.96.4754 1.3816.895.4217.4194.6816.8176.9005 1.3787.1653.4217.3617 1.056.4169 2.2263.0602 1.2655.0739 1.645.0796 4.848.0058 3.203-.0055 3.5834-.061 4.848-.051 1.17-.245 1.8055-.408 2.2294-.216.5604-.4763.96-.8954 1.3814-.419.4215-.8181.6811-1.3783.9-.4224.1649-1.0577.3617-2.2262.4174-1.2656.0595-1.6448.072-4.8493.079-3.2045.007-3.5825-.006-4.848-.0608M16.953 5.5864A1.44 1.44 0 1 0 18.39 4.144a1.44 1.44 0 0 0-1.437 1.4424M5.8385 12.012c.0067 3.4032 2.7706 6.1557 6.173 6.1493 3.4026-.0065 6.157-2.7701 6.1506-6.1733-.0065-3.4032-2.771-6.1565-6.174-6.1498-3.403.0067-6.156 2.771-6.1496 6.1738M8 12.0077a4 4 0 1 1 4.008 3.9921A3.9996 3.9996 0 0 1 8 12.0077"/></svg></a></li>
+      </ul>
+      <!-- À MODIFIER : mentions légales (obligatoires pour un site d'association) -->
+      <details>
+        <summary>Mentions légales</summary>
+        <p>Éditeur : association Intuition Tango, contact : tangointuition@gmail.com. Directeur de la publication : Jacques Chabrol, président.</p>
+        <p>Hébergeur : GitHub Inc., 88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, États-Unis.</p>
+        <p>Ce site ne dépose aucun cookie et ne collecte aucune donnée personnelle.</p>
+      </details>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Grise les événements dont la date est passée
+  (function () {
+    var aujourdHui = new Date(); aujourdHui.setHours(0, 0, 0, 0);
+    document.querySelectorAll('.agenda li[data-date]').forEach(function (li) {
+      if (new Date(li.dataset.date + 'T00:00:00') < aujourdHui) {
+        li.classList.add('passe');
+        var etat = document.createElement('span');
+        etat.className = 'etat'; etat.textContent = 'Passé';
+        li.querySelector('h3').appendChild(etat);
+      }
+    });
+  })();
+</script>
+
+</body>
+</html>
