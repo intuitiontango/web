@@ -1,0 +1,41 @@
+# Met à jour chaque jour la rubrique « Actualités » du site à partir d'Instagram.
+# Lancement manuel possible : onglet « Actions » de GitHub > Actualités Instagram > Run workflow.
+name: Actualités Instagram
+
+on:
+  schedule:
+    - cron: "17 5 * * *"   # chaque jour vers 6 h 17 (7 h 17 en été), heure de Paris
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - scripts/instagram.py
+      - .github/workflows/instagram.yml
+
+permissions:
+  contents: write
+
+concurrency: instagram
+
+jobs:
+  mise-a-jour:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Récupérer les dernières publications
+        run: python3 scripts/instagram.py
+        env:
+          INSTAGRAM_TOKEN: ${{ secrets.INSTAGRAM_TOKEN }}
+
+      - name: Publier sur le site s'il y a du nouveau
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A index.html images/instagram .github
+          if git diff --cached --quiet; then
+            echo "Rien à publier."
+          else
+            git commit -m "Actualités Instagram : mise à jour automatique"
+            git push
+          fi

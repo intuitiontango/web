@@ -223,6 +223,27 @@
   .agenda li.passe .type { color: var(--gris); }
   .etat { margin-left: .5rem; font-family: var(--texte); font-size: .8rem; color: var(--gris); border: 1px solid currentColor; padding: .05rem .4rem; vertical-align: middle; }
 
+  /* Actualités (Instagram) */
+  .insta {
+    list-style: none; margin: 0 0 2.5rem; padding: 0;
+    display: grid; gap: 1.25rem; grid-template-columns: repeat(4, 1fr);
+  }
+  .insta-carte { display: block; text-decoration: none; }
+  .insta-visuel {
+    position: relative; display: grid; place-items: center;
+    aspect-ratio: 4 / 5; overflow: hidden;
+    background: var(--anthracite); border: 1px solid var(--bronze);
+  }
+  .insta-visuel img { width: 100%; height: 100%; object-fit: contain; transition: transform .6s; }
+  .insta-video img { position: absolute; inset: 0; object-fit: cover; filter: brightness(.8); transition: filter .3s, transform .6s; }
+  .insta-video .lecture { position: relative; z-index: 1; }
+  .insta-carte:hover img, .insta-carte:focus-visible img { transform: scale(1.02); }
+  .insta-carte:hover .insta-video img, .insta-carte:focus-visible .insta-video img { filter: brightness(.95); }
+  .insta-meta { display: block; margin-top: .6rem; font-size: .95rem; color: var(--gris); }
+  @media (max-width: 720px) {
+    .insta { grid-template-columns: repeat(2, 1fr); gap: .75rem; }
+  }
+
   /* Professeurs */
   .profs {
     display: grid; gap: 3rem;
@@ -350,6 +371,7 @@
       <ul>
         <li><a href="#cours">Cours</a></li>
         <li><a href="#agenda">Agenda</a></li>
+        <li><a href="#actualites">Actualités</a></li>
         <li><a href="#professeurs">Professeurs</a></li>
         <li><a href="#photos">En images</a></li>
         <li><a href="#contact">Contact</a></li>
@@ -483,6 +505,9 @@
       <p class="tarifs">Suivez toutes nos annonces sur <a href="https://www.facebook.com/intuitiontango" rel="noopener">Facebook</a> et <a href="https://www.instagram.com/intuition_tango/" rel="noopener">Instagram</a>.</p>
     </div>
   </section>
+
+  <!-- INSTAGRAM:DEBUT -->
+  <!-- INSTAGRAM:FIN -->
 
   <!-- ===================== PROFESSEURS ===================== -->
   <section class="bloc" id="professeurs">
