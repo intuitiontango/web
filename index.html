@@ -350,8 +350,12 @@
   /* ---------- Mobile ---------- */
   @media (max-width: 720px) {
     .entete .contenu { flex-direction: column; align-items: flex-start; gap: .25rem; padding-block: .6rem; }
-    .entete nav ul { gap: 1.1rem; max-width: 100%; }
-    html { scroll-padding-top: 7rem; }
+    /* Menu sur une seule ligne : la taille du texte suit la largeur de l'écran */
+    .entete nav { width: 100%; overflow-x: auto; scrollbar-width: none; }
+    .entete nav::-webkit-scrollbar { display: none; }
+    .entete nav ul { flex-wrap: nowrap; justify-content: space-between; gap: .5rem; }
+    .entete nav a { font-size: clamp(.75rem, 3.45vw, .95rem); }
+    html { scroll-padding-top: 6.25rem; }
     .cours li { grid-template-columns: 1fr; }
     .agenda li { grid-template-columns: 4.5rem 1fr; gap: 1rem; }
     .date b { font-size: 2.4rem; }
