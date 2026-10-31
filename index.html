@@ -328,6 +328,90 @@
   footer details p { margin: .5rem 0 0; max-width: 40rem; }
 
 
+  /* ---------- Encart newsletter (formulaire Infomaniak) ---------- */
+  section.bloc:has(+ .lettre) { padding-bottom: clamp(1.5rem, 3vw, 2.5rem); }
+  .lettre { padding-block: 0 2.5rem; }
+  .lettre__cadre {
+    display: grid;
+    grid-template-columns: auto 1fr minmax(16rem, 23rem);
+    align-items: center;
+    gap: 1.25rem 2.25rem;
+    padding-block: 1.75rem;
+    border-top: 1px solid rgba(201, 161, 90, .45);
+    border-bottom: 1px solid rgba(201, 161, 90, .45);
+  }
+  .lettre__hirondelle { width: 3.2rem; height: auto; color: var(--bronze); transform: rotate(-14deg); }
+  .lettre__titre {
+    margin: 0 0 .15rem;
+    font-family: var(--titre);
+    font-weight: 400;
+    font-size: 1.35rem;
+    letter-spacing: .02em;
+    color: var(--cramoisi);
+  }
+  .lettre__texte { margin: 0; font-size: .95rem; color: var(--gris); text-wrap: pretty; }
+
+  /* Formulaire (structure Infomaniak, habillage maison) */
+  .lettre .inf-form { margin: 0; }
+  .lettre__champ {
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid var(--bronze-fonce);
+    transition: border-color .2s;
+  }
+  .lettre__champ:focus-within { border-color: var(--cramoisi); }
+  .lettre .inf-input { flex: 1; min-width: 0; position: relative; }
+  .lettre .inf-input input {
+    width: 100%;
+    border: 0; background: transparent; outline: none;
+    padding: .6rem 0;
+    font: inherit; font-size: 1rem; color: var(--encre);
+  }
+  .lettre .inf-input input::placeholder { color: var(--gris); opacity: .75; }
+  .lettre .inf-submit input {
+    border: 0; background: none; cursor: pointer;
+    padding: .6rem 0 .6rem 1rem;
+    font-family: var(--texte); font-weight: 500; font-size: .78rem;
+    letter-spacing: .16em; text-transform: uppercase;
+    color: var(--bronze-fonce);
+    transition: color .2s, opacity .2s;
+  }
+  .lettre .inf-submit input:hover,
+  .lettre .inf-submit input:focus-visible { color: var(--cramoisi); }
+  .lettre .inf-submit input.disabled { opacity: .4; cursor: wait; }
+
+  .lettre .inf-rgpd { margin: .55rem 0 0; font-size: .75rem; line-height: 1.5; color: var(--gris); }
+
+  /* Messages d'erreur ajoutés par Infomaniak */
+  .lettre .inf-message { display: block; font-size: .78rem; line-height: 1.4; color: var(--framboise); }
+  .lettre .inf-input .inf-message { position: absolute; left: 0; top: calc(100% + .45rem); }
+  .lettre .inf-form:has(.inf-input .inf-message) .inf-rgpd { visibility: hidden; }
+  .lettre .inf-content > .inf-input.inf-error { margin-top: .4rem; }
+
+  /* Message après inscription */
+  .lettre .inf-success p { margin: 0; font-family: var(--titre); font-size: 1.05rem; line-height: 1.5; color: var(--cramoisi); }
+  .lettre .inf-success .inf-retour { display: none; }
+
+  /* Vérification anti-spam (Altcha, invisible le plus souvent) */
+  .lettre altcha-widget {
+    --altcha-color-base: var(--pierre);
+    --altcha-color-border: var(--bronze);
+    --altcha-color-text: var(--encre);
+    --altcha-color-border-focus: var(--cramoisi);
+    --altcha-border-radius: 2px;
+  }
+
+  .lettre .invisible {
+    position: absolute; width: 1px; height: 1px; overflow: hidden;
+    clip: rect(0 0 0 0); white-space: nowrap;
+  }
+
+  @media (max-width: 44rem) {
+    .lettre__cadre { grid-template-columns: auto 1fr; }
+    .lettre__formulaire { grid-column: 1 / -1; }
+  }
+
+
   /* ---------- Mode nuit ---------- */
   @media (prefers-color-scheme: dark) {
     :root {
@@ -610,6 +694,59 @@
     </div>
   </section>
 
+  <!-- ===================== LETTRE D'INFORMATION (inscription via Infomaniak) ===================== -->
+  <section class="lettre" aria-labelledby="lettre-titre">
+    <div class="contenu lettre__cadre">
+  
+      <!-- Hirondelle, animal totem de l'association -->
+      <svg class="lettre__hirondelle" viewBox="0 0 64 48" aria-hidden="true">
+        <path fill="currentColor" d="M32 6c1.6 0 2.6 1.6 2.8 3.6C40 10 52 14 63 24c-9-3-19-4-26.6-2l1.1 8L45 47 34.5 33 32 34l-2.5-1L19 47l7.5-17 1.1-8C20 20 10 21 1 24 12 14 24 10 29.2 9.6 29.4 7.6 30.4 6 32 6z"/>
+      </svg>
+  
+      <div>
+        <h2 class="lettre__titre" id="lettre-titre">La lettre d'Intuition Tango</h2>
+        <p class="lettre__texte">Milongas, stages et nouvelles des cours : un message de temps en temps, jamais plus.</p>
+      </div>
+  
+      <form method="post" action="https://newsletter.infomaniak.com/v3/api/1/newsletters/webforms/26761/submit" class="inf-form lettre__formulaire">
+        <!-- Pièges à robots + identifiants Infomaniak : ne pas modifier -->
+        <input type="text" name="inf_email_check" autocomplete="off" tabindex="-1" aria-hidden="true" style="display:none" />
+        <input type="text" name="website" autocomplete="off" tabindex="-1" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden;" />
+        <input type="hidden" name="key" value="eyJpdiI6IlwvZm5ZR2dsNHBJa0F1bVFNR2ZTK29JVDdxblhCTGFFQm9wclZoNzhCYVZNPSIsIm1hYyI6IjYxN2IwNDZhYTY1YmY2MDM1ODY2NGE1ODVlZDEyNTRkZmI1MTk0ODAwNmY5NmRmNjBhZTRhMWQ2OTBiZDNlOTAiLCJ2YWx1ZSI6Ik80UUgyUVZ2Mnl3SldGRFwvQndValliTCtueURhMjgwUUNiRzJ5WGQrOHhjPSJ9">
+        <input type="hidden" name="webform_id" value="26761">
+  
+        <div class="inf-main">
+          <!-- Affiché à la place du champ une fois l'adresse envoyée -->
+          <div class="inf-success" style="display:none" role="status">
+            <p>Merci ! Un e-mail vient de vous être envoyé : cliquez sur le lien pour confirmer votre inscription.</p>
+            <p class="inf-retour"><a href="#" class="inf-btn">&laquo;</a></p>
+          </div>
+  
+          <div class="inf-content">
+            <div class="lettre__champ">
+              <div class="inf-input inf-input-text">
+                <label class="invisible" for="lettre-email">Votre adresse e-mail</label>
+                <input id="lettre-email" type="email" name="inf[1]" data-inf-meta="1" data-inf-error=""
+                       required="required" placeholder="Votre adresse e-mail" autocomplete="email">
+              </div>
+              <div class="inf-submit">
+                <input type="submit" value="S'inscrire →">
+              </div>
+            </div>
+            <div class="inf-rgpd">Un e-mail de confirmation vous sera envoyé. Votre adresse sert uniquement à recevoir la lettre ; désinscription en un clic.</div>
+  
+            <!-- Vérification anti-spam et envoi : scripts Infomaniak, ne pas modifier -->
+            <script src="https://newsletter.infomaniak.com/v3/static/mcaptcha/altcha.min.js?v=1793433600" type="module"></script>
+            <altcha-widget hidelogo hidefooter floating challengeurl="https://newsletter.infomaniak.com/v3/altcha-challenge"></altcha-widget>
+            <script src="https://newsletter.infomaniak.com/v3/static/mcaptcha/altcha-index.js?v=1793433600" defer></script>
+            <script src="https://newsletter.infomaniak.com/v3/static/webform_index.js?v=1793433600"></script>
+          </div>
+        </div>
+      </form>
+  
+    </div>
+  </section>
+
 </main>
 
 <footer>
@@ -628,7 +765,7 @@
         <summary>Mentions légales</summary>
         <p>Éditeur : association Intuition Tango, contact : tangointuition@gmail.com. Directeur de la publication : Jacques Chabrol, président.</p>
         <p>Hébergeur : GitHub Inc., 88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, États-Unis.</p>
-        <p>Ce site ne dépose aucun cookie et ne collecte aucune donnée personnelle.</p>
+        <p>Ce site ne dépose aucun cookie. Les adresses e-mail laissées pour recevoir la lettre d'information sont conservées par notre prestataire Infomaniak Network SA (Suisse) et servent uniquement à cet envoi ; chaque lettre contient un lien de désinscription.</p>
       </details>
     </div>
   </div>
