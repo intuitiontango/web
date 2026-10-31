@@ -340,7 +340,7 @@
     border-top: 1px solid rgba(201, 161, 90, .45);
     border-bottom: 1px solid rgba(201, 161, 90, .45);
   }
-  .lettre__hirondelle { width: 3.2rem; height: auto; color: var(--bronze); transform: rotate(-14deg); }
+  .lettre__hirondelle { display: block; width: 5.5rem; height: auto; margin-block: -.5rem; }
   .lettre__titre {
     margin: 0 0 .15rem;
     font-family: var(--titre);
@@ -698,10 +698,8 @@
   <section class="lettre" aria-labelledby="lettre-titre">
     <div class="contenu lettre__cadre">
   
-      <!-- Hirondelle, animal totem de l'association -->
-      <svg class="lettre__hirondelle" viewBox="0 0 64 48" aria-hidden="true">
-        <path fill="currentColor" d="M32 6c1.6 0 2.6 1.6 2.8 3.6C40 10 52 14 63 24c-9-3-19-4-26.6-2l1.1 8L45 47 34.5 33 32 34l-2.5-1L19 47l7.5-17 1.1-8C20 20 10 21 1 24 12 14 24 10 29.2 9.6 29.4 7.6 30.4 6 32 6z"/>
-      </svg>
+      <!-- Hirondelle, animal totem de l'association (tirée de images/hirondelle-tango.png) -->
+      <img class="lettre__hirondelle" src="images/hirondelle-lettre.webp" alt="" width="300" height="311" loading="lazy">
   
       <div>
         <h2 class="lettre__titre" id="lettre-titre">La lettre d'Intuition Tango</h2>
