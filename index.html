@@ -740,6 +740,23 @@
             <altcha-widget hidelogo hidefooter floating challengeurl="https://newsletter.infomaniak.com/v3/altcha-challenge"></altcha-widget>
             <script src="https://newsletter.infomaniak.com/v3/static/mcaptcha/altcha-index.js?v=1793433600" defer></script>
             <script src="https://newsletter.infomaniak.com/v3/static/webform_index.js?v=1793433600"></script>
+            <script>
+              // Sur téléphone, le remplissage automatique peut remplir les champs pièges invisibles
+              // (prévus contre les robots) : Infomaniak écarte alors l'inscription sans rien dire.
+              // On les vide juste avant l'envoi.
+              (function () {
+                var f = document.querySelector('.lettre .inf-form');
+                if (!f) return;
+                function vider() {
+                  ['inf_email_check', 'website'].forEach(function (n) {
+                    var c = f.querySelector('[name="' + n + '"]');
+                    if (c) c.value = '';
+                  });
+                }
+                f.addEventListener('submit', vider, true);
+                f.addEventListener('click', vider, true);
+              })();
+            </script>
           </div>
         </div>
       </form>
