@@ -53,6 +53,62 @@
   ]
 }
 </script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Faut-il venir avec un partenaire ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Non, ce n'est pas nécessaire. Pour les cours, nous favorisons la parité entre guideurs et guidés, mais vous pouvez tout à fait venir seul. Aux bals, milongas et prácticas, beaucoup de danseurs viennent seuls."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Faut-il avoir déjà dansé ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Non, aucune expérience n'est nécessaire. Le cours débutants du mardi, de 19h15 à 20h30, commence par les bases : la marche, l'abrazo et l'écoute du partenaire."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Peut-on essayer un cours ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Oui, vous pouvez essayer un cours avant de vous inscrire. Écrivez-nous ou venez directement un mardi soir à L'Atelier."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Quelles chaussures porter ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Des chaussures de ville souples. Évitez les chaussures de sport : leur semelle accroche le sol et gêne les pivots."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Y a-t-il un âge pour commencer ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Il n'y a pas d'âge pour commencer le tango argentin. Nous accueillons les danseurs de préférence à partir de quinze ans."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Où et quand ont lieu les cours ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Le mardi soir à L'Atelier, 5 rue du Moulin à Gerzat, aux portes de Clermont-Ferrand et tout près de Cébazat, Aulnat et Riom : débutants de 19h15 à 20h30, intermédiaires-avancés de 20h45 à 22h00."
+      }
+    }
+  ]
+}
+</script>
 <link rel="icon" href="/favicon.ico?v=2" sizes="48x48">
 <link rel="icon" type="image/png" sizes="192x192" href="images/favicon.png?v=2">
 <link rel="apple-touch-icon" href="images/apple-touch-icon.png?v=2">
@@ -304,6 +360,21 @@
     .galerie .cadre-bas { aspect-ratio: 4 / 5; }
   }
 
+  /* Questions fréquentes */
+  .faq { max-width: 46rem; border-top: 1px solid var(--bronze); }
+  .faq details { border-bottom: 1px solid var(--bronze); }
+  .faq summary {
+    cursor: pointer; list-style: none; padding: 1rem 2rem 1rem 0; position: relative;
+    font-family: var(--titre); font-size: 1.25rem; color: var(--cramoisi);
+  }
+  .faq summary::-webkit-details-marker { display: none; }
+  .faq summary::after {
+    content: "+"; position: absolute; right: .25rem; top: 50%; transform: translateY(-50%);
+    color: var(--bronze-fonce); font-size: 1.5rem; transition: transform .2s;
+  }
+  .faq details[open] summary::after { transform: translateY(-50%) rotate(45deg); }
+  .faq details p { margin: 0 0 1.25rem; max-width: 40rem; }
+
   /* Contact */
   .contact {
     display: grid; gap: 2rem 4rem;
@@ -473,6 +544,7 @@
     .entete nav::-webkit-scrollbar { display: none; }
     .entete nav ul { flex-wrap: nowrap; justify-content: space-between; gap: .5rem; }
     .entete nav a { font-size: clamp(.75rem, 3.45vw, .95rem); }
+    .entete nav .menu-large { display: none; }
     html { scroll-padding-top: 6.25rem; }
     .cours li { grid-template-columns: 1fr; }
     .agenda li { grid-template-columns: 4.5rem 1fr; gap: 1rem; }
@@ -496,6 +568,7 @@
         <li><a href="#actualites">Actualités</a></li>
         <li><a href="#professeurs">Professeurs</a></li>
         <li><a href="#photos">En images</a></li>
+        <li class="menu-large"><a href="#questions">Questions</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
     </nav>
@@ -592,7 +665,7 @@
         <li data-date="2026-11-03">
           <div class="date"><small>mar.</small><b>3</b><small>nov.</small></div>
           <div>
-            <h3>Intuition Tango, Gerzat</h3>
+            <h3>Cours de tango argentin, Gerzat</h3>
             <p><span class="type">Cours débutants</span>, 19h15 à 20h30, L'Atelier.</p>
             <p><span class="type">Cours intermédiaires-avancés</span>, 20h45 à 22h00, L'Atelier.</p>
           </div>
@@ -609,7 +682,7 @@
         <li data-date="2026-11-10">
           <div class="date"><small>mar.</small><b>10</b><small>nov.</small></div>
           <div>
-            <h3>Intuition Tango, Gerzat</h3>
+            <h3>Cours de tango argentin, Gerzat</h3>
             <p><span class="type">Cours débutants</span>, 19h15 à 20h30, L'Atelier.</p>
             <p><span class="type">Cours intermédiaires-avancés</span>, 20h45 à 22h00, L'Atelier.</p>
           </div>
@@ -617,7 +690,7 @@
         <li data-date="2026-11-17">
           <div class="date"><small>mar.</small><b>17</b><small>nov.</small></div>
           <div>
-            <h3>Intuition Tango, Gerzat</h3>
+            <h3>Cours de tango argentin, Gerzat</h3>
             <p><span class="type">Cours débutants</span>, 19h15 à 20h30, L'Atelier.</p>
             <p><span class="type">Cours intermédiaires-avancés</span>, 20h45 à 22h00, L'Atelier.</p>
           </div>
@@ -625,7 +698,7 @@
         <li data-date="2026-11-24">
           <div class="date"><small>mar.</small><b>24</b><small>nov.</small></div>
           <div>
-            <h3>Intuition Tango, Gerzat</h3>
+            <h3>Cours de tango argentin, Gerzat</h3>
             <p><span class="type">Cours débutants</span>, 19h15 à 20h30, L'Atelier.</p>
             <p><span class="type">Cours intermédiaires-avancés</span>, 20h45 à 22h00, L'Atelier.</p>
           </div>
@@ -707,6 +780,40 @@
         <figure class="cadre-bas">
           <img src="images/cours-cercle.jpg" alt="Élèves réunis autour du professeur pendant un cours débutants" width="900" height="1538" loading="lazy">
         </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== QUESTIONS FRÉQUENTES ===================== -->
+  <section class="bloc" id="questions">
+    <div class="contenu">
+      <h2>Questions fréquentes</h2>
+      <p class="intro">Tout ce qu'on se demande avant son premier cours de tango argentin.</p>
+      <div class="faq">
+        <details>
+          <summary>Faut-il venir avec un partenaire ?</summary>
+          <p>Non, ce n'est pas nécessaire. Pour les cours, nous favorisons la parité entre guideurs et guidés, mais vous pouvez tout à fait venir seul. Aux bals, milongas et prácticas, beaucoup de danseurs viennent seuls.</p>
+        </details>
+        <details>
+          <summary>Faut-il avoir déjà dansé ?</summary>
+          <p>Non, aucune expérience n'est nécessaire. Le cours débutants du mardi, de 19h15 à 20h30, commence par les bases : la marche, l'abrazo et l'écoute du partenaire.</p>
+        </details>
+        <details>
+          <summary>Peut-on essayer un cours ?</summary>
+          <p>Oui, vous pouvez essayer un cours avant de vous inscrire. Écrivez-nous ou venez directement un mardi soir à L'Atelier.</p>
+        </details>
+        <details>
+          <summary>Quelles chaussures porter ?</summary>
+          <p>Des chaussures de ville souples. Évitez les chaussures de sport : leur semelle accroche le sol et gêne les pivots.</p>
+        </details>
+        <details>
+          <summary>Y a-t-il un âge pour commencer ?</summary>
+          <p>Il n'y a pas d'âge pour commencer le tango argentin. Nous accueillons les danseurs de préférence à partir de quinze ans.</p>
+        </details>
+        <details>
+          <summary>Où et quand ont lieu les cours ?</summary>
+          <p>Le mardi soir à L'Atelier, 5 rue du Moulin à Gerzat, aux portes de Clermont-Ferrand et tout près de Cébazat, Aulnat et Riom : débutants de 19h15 à 20h30, intermédiaires-avancés de 20h45 à 22h00.</p>
+        </details>
       </div>
     </div>
   </section>
